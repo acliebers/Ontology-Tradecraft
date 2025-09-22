@@ -1,6 +1,5 @@
-
-
-@prefix : <https://www.commoncoreontologies.org/ArtifactOntology#> .
+@prefix : <http://www.austinliebers.com/Assignment2Core/> .
+@prefix ins: <http://www.austinliebers.com/Assignment2Instances/> .
 @prefix cco: <https://www.commoncoreontologies.org/> .
 @prefix obo: <http://purl.obolibrary.org/obo/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -10,3 +9,1218 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://www.austinliebers.com/Assignment2Core/> .
+
+<http://www.austinliebers.com/Assignment2Core> rdf:type owl:Ontology ;
+              owl:imports <https://raw.githubusercontent.com/BFO-ontology/BFO-2020/refs/heads/master/21838-2/owl/bfo-core.ttl> , 
+                          <https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/refs/heads/develop/src/cco-modules/ArtifactOntology.ttl> ,
+                          <https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/refs/heads/develop/src/cco-modules/EventOntology.ttl> ,
+                          <https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/refs/heads/develop/src/cco-modules/AgentOntology.ttl> ,
+                          <https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/refs/heads/develop/src/cco-modules/InformationEntityOntology.ttl> ,
+                          <https://raw.githubusercontent.com/CommonCoreOntology/CommonCoreOntologies/refs/heads/develop/src/cco-modules/QualityOntology.ttl> ;
+              rdfs:label "Assignment 2 Core ontology"@en ;
+              .
+
+
+##############################
+#####AnnotationProperties#####
+##############################
+
+:RegistrationCount a owl:AnnotationProperty ;
+                   rdfs:label "Registration Count"@en ;
+                   skos:definition "The total number of planes of a class currently registered with the FAA." ;
+                   .
+
+:FAARegistry a owl:AnnotationProperty;
+             rdfs:label "FAA Registry"@en ;
+             sko:definition "Whether or not a class is registered with the FAA."@en ;
+             .
+:TMFSOperationsFY24 a owl:AnnotationProperty ;
+                    rdfs:label "TMFS Operations Fiscal Year 2024"@en ;
+                    skos:definition "The number of operations involving planes of the class for a given year."@en ;
+                    .
+
+:RegistrationCount a owl:AnnotationProperty ;
+                   rdfs:label "Registration Count"@en ;
+                   skos:definition "The number of aircraft of a class registered with the FAA"@en ;
+                   .
+
+##########################
+#####ObjectProperties#####
+##########################
+
+:manufacturedBy a owl:ObjectProperty ;
+                rdfs:label "manufactured by"@en ;
+                skos:definition "x manufactured by y =def. x is an artifact and y is an agent and x was manufactured by y (or a facility owned by y)."@enm ;
+                rdfs:domain cco:ont00000995 ;
+                rdfs:range cco:ont00001017 ;
+                .
+                
+:hasModelBADA a owl:ObjectProperty ;
+              rdfs:subPropertyOf cco:ont00001879;
+              rdfs:label "has model BADA"@en ;
+              skos:definition "x has model BADA y =def. x is an Aircraft and y is a BADA model identifier and y designates x."@en ;
+              rdfs:domain cco:ont00001043;
+              rdfs:range :BADA_Identifier;
+              .
+
+:hasModelFAA a owl:ObjectProperty ;
+             rdfs:subPropertyOf cco:ont00001879;
+             skos:definition "x has model FAA y =def. x is an Aircraft and y is a FAA model identifier and y designates x."@en ;
+             rdfs:label "has model FAA"@en ;
+             rdfs:domain cco:ont00001043;
+             rdfs:range :FAA_Identifier;
+             .
+
+:hasICAOCOde a owl:ObjectProperty ;
+             rdfs:subPropertyOf cco:ont00001879 ;
+             rdfs:label "has ICAO Code"@en ;
+             skos:definition "x has ICAO Code y =def. x is an Aircraft aand y is an ICAO code and y designates x."@en ;
+             rdfs:domain cco:ont00001043;
+             rdfs:range :ICAO_Code;
+             .
+
+:hasLengthFt a owl:ObjectProperty ;
+             rdfs:subPropertyOf cco:ont00001917 ;
+             rdfs:label "has length ft"@en ;
+             rdfs:domain cco:ont00001043 ;
+             rdfs:range cco:ont00001163;
+             skos:definition "x has length ft y iff x is an aircraft and y is a measurement information content entity which describes the length of x."@en ;
+            .
+
+:hasTailHeightFt a owl:ObjectProperty ;
+                 rdfs:subPropertyOf cco:ont00001917 ;
+                 rdfs:label "has tail height ft"@en ;
+                 rdfs:domain cco:ont00001043 ;
+                 rdfs:range cco:ont00001163;
+                 skos:definition "x has tail height ft y iff x is an aircraft and y is a measurement information content entity that describes the distance between the tail of the aircraft and the ground while the arcraft is grounded."@en ;
+                 .
+
+
+:hasAAC a owl:ObjectProperty ;
+       rdfs:subPropertyOf cco:ont00001917 ;
+       rdfs:label "has Aircraft Approach Category"@en ;
+       rdfs:domain cco:ont00001043 ;
+       rdfs:range :AircraftApproachCategory ;
+       skos:definition "x has aircraft approach category y iff x is an aircraft and y is an aircraft approach category which describes x."@en ;
+       .
+
+:hasTDG a owl:ObjectProperty ;
+        rdfs:subPropertyOf cco:ont00001808 ;
+        rdfs:label "has taxiway design group"@en ;
+        rdfs:domain cco:ont00001043 ;
+        rdfs:range :TaxiwayDesignGroup ;
+        skos:definition "x has taxiway design group y iff x is an aircraft and y is a taxiway design group which is about x."@en ;
+        .
+
+:hasADG a owl:ObjectProperty ;
+        rdfs:subPropertyOf cco:ont00001917 ;
+        rdfs:label "has Aircraft Design Group"@en ;
+        skos:altLabel "has ADG"@en ;
+        rdfs:domain cco:ont00001043 ;
+        rdfs:range :AircraftDesignGroup ;
+        skos:definition "x has aircraft design group y iff x is an aircraft, y is an aircraft design group, and y describes x."@en ;
+        .
+
+:hasWingspanWithSharkletsFt a owl:ObjectProperty ;
+                     rdfs:subPropertyOf cco:ont00001917;
+                     rdfs:label "has wingspan with sharklets in ft"@en ;
+                     rdfs:domain cco:ont00001043 ;
+                     rdfs:range cco:ont00001163;
+                     skos:definition "x has wingspan with sharklets in ft y iff x is an aircraft and y is a measurement information content entity which describes the wingspan of x with sharklets in ft."@en ;
+                     .
+
+:hasWingspanWithoutSharkletsFt a owl:ObjectProperty ;
+                     rdfs:subPropertyOf cco:ont00001917;
+                     rdfs:label "has wingspan without sharklets in ft"@en ;
+                     rdfs:domain cco:ont00001043 ;
+                     rdfs:range cco:ont00001163;
+                     skos:definition "x has wingspan without sharklets in ft y iff x is an aircraft and y is a measurement information content entity which describes the wingspan of x without sharklets in ft."@en ;
+                     .
+:hasWheelbaseFt a owl:ObjectProperty ;
+                rdfs:subPropertyOf cco:ont00001917 ;
+                rdfs:label "has wheelbase in ft"@en ;
+                rdfs:domain cco:ont00001043 ;
+                rdfs:range cco:ont00001163 ;
+                skos:definition  "x has wheelbase in ft y iff x is an aircraft and y is a measurement information content entity which describes the distance between the main and nose gears of x."@en ;
+                .
+
+:hasApproachSpeedKnot a owl:ObjectProperty ;
+                      rdfs:subPropertyOf cco:ont00001917 ;
+                      rdfs:label "has approach speed in knots"@en ;
+                      rdfs:domain cco:ont00001043 ;
+                      rdfs:range cco:ont00001163 ;
+                      skos:definition "x has approach speed in knots y iff x is an aircraft and y is a measurement information content entity which describes the approach speed of x in knots."@en ;
+                      .
+
+:hasCockpitMainGearFt a owl:ObjectProperty ;
+                     rdfs:subPropertyOf cco:ont00001917 ;
+                     rdfs:label "has cockpit-to-main-gear distance in ft"@en ;
+                     rdfs:domain cco:ont00001043 ;
+                     rdfs:range cco:ont00001163 ;
+                     skos:definition "x has cockpit-to-main-gear distance in ft y iff x is an aircraft and y is a measurement information content entity which describes the distance between the cockpit and main gear."@en ;
+                     rdfs:comment "Apparently this measurement is usually equal to the wheelbase." ;
+                     .
+
+:hasMainGearWidthFt a owl:ObjectProperty ;
+                    rdfs:subPropertyOf cco:ont00001917 ;
+                    rdfs:label "has main gear width in ft"@en ;
+                    rdfs:domain cco:ont00001043 ;
+                    rdfs:range cco:ont00001163 ;
+                    skos:definition "x has main gear width in ft y iff x is an aircraft and y is a measurement information content entity which describes the width of the main gear in ft."@en ;
+                    .
+
+:hasMTOWlb a owl:ObjectProperty ;
+           rdfs:subPropertyOf cco:00001917 ;
+           rdfs:label "has MTOW in lbs"@en ;
+           rdfs:domain cco:ont00001043 ;
+           rdfs:range cco:ont00001163 ;
+           skos:definition "x has MTOW in lbs y iff x is an aircraft and y is a measurement information content entity which describes the maximum takeoff weight of x in lbs."@en ;
+           .
+
+:hasMALWlb a owl:ObjectProperty ;
+         rdfs:subPropertyOf cco:ont00001917 ;
+         rdfs:label "has MALW in lbs"@en ;
+         rdfs:domain cco:ont00001043 ;
+         rdfs:range cco:ont00001163 ;
+         skos:definition "x has MALW in lbs y iff x is an aircraft and y is a measurement information content entity which describes the maximum landing weight of x in lbs."@en ;
+         .
+
+:hasMainGearsConfiguration a owl:ObjectProperty ;
+                          rdfs:subPropertyOf cco:ont00001917 ;
+                          rdfs:label "has main gears configuration"@en ;
+                          rdfs:domain cco:ont00001043 ;
+                          rdfs:range :MainGearConfiguration ;
+                          skos:definition "x has main gears configuration y iff x is an aircraft and y is a main gears configuration which describes x."@en ;
+                          .
+
+:hasICAOWTC a owl:ObjectProperty ;
+             rdfs:subPropertyOf cco:ont00001917 ;
+             rdfs:label "has ICAO Weight Turbulence Category"@en ;
+             rdfs:domain cco:ont00001043 ;
+             rdfs:range :ICAOWTC ;
+             skos:definition "x has ICAO weight turbulence category y iff x is an aircraft and y is an ICAO weight turbulence category which describes x."@en ;
+         .
+
+:hasParkingAreaft2 a owl:ObjectProperty ;
+                   rdfs:subPropertyOf cco:ont00001917 ;
+                   rdfs:label "has parking area in square ft"@en ;
+                   rdfs:domain cco:ont00001043 ;
+                   rdfs:range cco:ont00001163 ;
+                   skos:definition  "x has parking area in square ft y iff x is an aircraft and y is a measurement information content entity which describes the square footage which x occupies when parked."@en ;
+                   .
+
+:hasFAAWeightClass a owl:ObjectProperty ;
+                   rdfs:subPropertyOf cco:ont00001917 ;
+                   rdfs:label "has FAA Weight Class"@en ;
+                   rdfs:domain cco:ont00001043 ;
+                   rdfs:range :FAAWeightClass;
+                   skos:definition "x has FAA Weight Class y iff x is an aircraft and y is an FAA weight class which describes x."@en ;
+                   .
+
+:hasOneHalfWakeCategory a owl:ObjectProperty ;
+                        rdfs:subPropertyOf cco:ont00001917 ;
+                        rdfs:label "has one-half wake category"@en ;
+                        rdfs:domain cco:ont00001043;
+                        rdfs:range :OneHalfWakeCategory;
+                        skos:definition "x has one-half wake category y iff x is an aircraft and y is a one half wake category which describes x."@en ;
+                        .
+:hasTwoWakeCategoryAppxA a owl:ObjectProperty ;
+                         rdfs:subPropertyOf cco:ont00001917 
+                         rdfs:label "has two wake category appx A"@en ;
+                         rdfs:domain cco:ont00001043 ;
+                         rdfs:range :TwoWakeCategoryAppxA ;
+                         skos:definition "x has two wake category appx A iff x is an aircraft and y is a two wake category appx A which describes x."@en ;
+                         .
+
+:hasTwoWakeCategoryAppxB a owl:ObjectProperty ;
+                         rdfs:subPropertyOf cco:ont00001917 ;
+                         rdfs:label "has two wake category appx B"@en ;
+                         rdfs:domain cco:ont00001043 ;
+                         rdfs:range :TwoWakeCategoryAppxB ;
+                         skos:definition "x has two wake category appx B iff x is an aircraft and y is a two wake category appx B which describes x."@en ;
+                         .
+:hasAACMaximum a owl:ObjectProperty ;
+               rdfs:subPropertyOf cco:ont00001917 ;
+               rdfs:label "has AAC maximum"@en ;
+               rdfs:domain cco:ont00001043 ;
+               rdfs:range :AircraftApproachCategory ;
+               skos:definition "x has AAC maximum y iff x is an aircraft and y is an AAC and y is the maximum AAC of x."@en ;
+               .
+
+:hasAACMinimum a owl:ObjectProperty ;
+               rdfs:subPropertyOf cco:ont00001917 ;
+               rdfs:label "has AAC minimum"@en ;
+               rdfs:domain cco:ont00001043 ;
+               rdfs:range :AircraftApproachCategory ;
+               skos:definition "x has AAC minimum y iff x is an aircraft and y is an AAC and y is the minimum AAC of x."@en ;
+               .
+
+:hasApproachSpeedMaximumKnot a owl:ObjectProperty ;
+                             rdfs:subPropertyOf cco:ont00001917 ;
+                             rdfs:label "has approach speed maximum in knots"@en ;
+                             rdfs:domain cco:ont00001043;
+                             rdfs:range  cco:ont00001163 ;
+                             skos:definition "x has approach speed maximum in knots y iff x is an aircraft and y is a measurement ICE which describes x's maximum approach speed in knots."@en ;
+                             .
+
+:hasApproachSpeedMinimumKnot a owl:ObjectProperty ;
+                             rdfs:subPropertyOf cco:ont00001917 ;
+                             rdfs:label "has approach speed minimum in knots"@en ;
+                             rdfs:domain cco:ont00001043;
+                             rdfs:range  cco:ont00001163 ;
+                             skos:definition "x has approach speed minimum in knots y iff x is an aircraft and y is a measurement ICE which describes x's minimum approach speed in knots."@en ;
+                             .
+
+:usesMeasurementUnit a owl:ObjectProperty ;
+                     rdfs:label "uses measurement unit"@en ;
+                     skos:definition "x uses measurement unit y iff x is an IB and y is a unit of measurement and x uses y."@en ;
+                     rdfs:domain cco:ont00000253 ;
+                     rdfs:range cco:ont00000969 ;
+                     .
+
+#################
+#####Classes#####
+#################
+
+:BADA_Identifier a owl:Class ;
+                rdfs:subClassOf cco:ont00000649 ;
+                rdfs:label "BADA Identifier"@enn ;
+                skos:definition "A non-name identifier used by the BADA to designate classes of aircraft"@en ;
+                skos:altLabel "BADA Designator"@en ;
+                .
+
+:FAA_Identifier a owl:Class ;
+                rdfs:subClassOf cco:ont00000649 ;
+                rdfs:label "FAA Identifier"@enn ;
+                skos:definition "A non-name identifier used by the FAA to designate classes of aircraft"@en ;
+                skos:altLabel "FAA Designator"@en ;
+                .
+
+:ICAO_Code a owl:Class ;
+           rdfs:subClassOf cco:ont00000077 ;
+                           [rdf:type owl:Restriction ;
+                            owl:onProperty cco:ont00001916 ;
+                            owl:allValuesFrom cco:ont00001043 ] ;
+           rdfs:label "ICAO Aircraft Code Identifier"@en ;
+           skos:altLabel "ICAO"@en ,
+                          "ICAO Code"@en ;
+           skos:prefLabel "ICAO Aircraft Code"@en ;
+           skos:definition "A code identifier used by the International Civial Aviation Organisation composed of 4 digits which designates some class of aircraft."@en ;
+                        .
+
+:Fixed-Wing_Aircraft a owl:Class ;
+                     rdfs:subClassOf cco:ont00001043 ;
+                     rdfs:label "Fixed-wing Aircraft"@en ;
+                     skos:altLabel "Fixed Wing"@en ;
+                     skos:definition "An aircraft with fixed wings that generates lift through forward motion."@en ;
+                     .
+
+:AircraftArtifactDesign a owl:Class  ;
+                        rdfs:subClassOf cco:ont00000319 ,
+                                        [rdf:type owl:Restriction ;
+                                         owl:onProperty cco:ont00001808 ;
+                                         owl:allValuesFrom cco:ont00001043] ;
+                        rdfs:label "Aircraft Artifact Design"@en ;
+                        skos:definition "An artifact design that is a specification of an aircraft."@en ;
+                        .
+
+:AircraftApproachCategory a owl:Class ;
+                                rdfs:subClassOf cco:ont00001163;
+                                rdfs:label "Aircraft Approach Category"@en ;
+                                skos:altlabel "AAC"@en ;
+                                skos:definition "A measurement information content entity that describes the range of airspeeds at which a plane may approach the runway."@en ;
+                                .
+
+:TaxiwayDesignGroup a owl:Class ;
+                    rdfs:subClassOf cco:ont00001163; 
+                    rdfs:label "Taxiway Design Group"@en ;
+                    skos:definition "A measurement information content entity which corresponds to a range of main gear width and Cockpit to main gear distance measurements."@en ;
+                    .
+
+:ICAOWTC a owl:Class ;
+         rdfs:subClassOf cco:ont00001163 ;
+         rdfs:label "ICAO Weight Turbulence Category"@en ;
+         skos:definition "A measurement information content entity which corresponds to a range of weights; Super (J), Heavy (H), Medium (M), and Light (L) are these categories."@en ;
+         .
+
+:MainGearsConfiguration a owl:Class ;
+                       rdfs:subClassOf cco:ont00001163 ;
+                       rdfs:label "Main Gears Configuration"@en ;
+                       skos:definition "A measurement information content entity which describes the type, number, and position of landing gears on an aircraft."@en ;
+                       .                       
+
+:ConsolidatedWakeTurbulenceCategory a owl:Class ;
+                                      rdfs:subClassOf cco:ont00001163 ;
+                                      rdfs:label "Consolidated Wake Turbulence Category"@en ;
+                                      skos:preflabel "CWT"@en ;
+                                      skos:definition "An approximate measurement of maximum takeoff weight."@en ;
+                                      .
+
+:ICAOWakeTurbulenceCategory a owl:Class ;
+                            rdfs:subClassOf cco:ont00001163 ;
+                            rdfs:label "ICAO Wake Turbulence Category"@en ;
+                            skos:prefLabel "ICAO CWT"@en ;
+                            skos:definition "An approximate measurement of maximum takeoff weight made by the ICAO."@en
+                            .
+
+:FAAWeightClass a owl:Class ;
+                rdfs:subClassOf cco:ont00001163 ;
+                rdfs:label "FAA Weight Class"@en ;
+                skos:definition "An approximate measurement of maximum takeoff weight."@en ;
+                .
+
+:OneHalfWakeCategory  a owl:Class ;
+                      rdfs:subClassOf cco:ont00001163 ;
+                      rdfs:label "One-half Wake Category"@en ;
+                      skos:definition "An approximate measurement of maximum takeoff weight."@en ;
+                      .
+
+:TwoWakeCategoryAppxA a owl:Class ;
+                 rdfs:subClassOf cco:ont00001163 ;
+                 rdfs:label "Two Wake Category Appx A"@en ;
+                 skos:definition "A revised approximate measurement of maximum takeoff weight."@en ;
+                 .
+
+:TwoWakeCategoryAppxB a owl:Class ;
+                      rdfs:subClassOf cco:ont00001163;
+                      rdfs:label "Two Wake Category Appx B"@en ;
+                      skos:definition "A revised approximate measurement of maximum takeoff weight."@en ;
+                      .
+
+:SameRunwaySeparationCategory a owl:Class ;
+                              rdfs:subClassOf cco:ont00001163 ;
+                              rdfs:label "Same Runway Separation Category"@en ;
+                              skos:definition "An approximate measurement of the allowable distance between an aircraft and preceding aircraft on the same runway."@en;
+                              skos:prefLabel "SRS"@en ;
+                              .
+
+:LandAndHoldShortOperationsGroup a owl:Class ;
+                                 rdfs:subClassOf cco:ont00001920 ;
+                                 rdfs:label "Land and Hold Short Operations Group"@en ;
+                                 skos:definition "A directive information content entity which prescribes a set of procedures for an aircraft regarding landing and short operations."@en ;
+                                 skos:altLabel "LAHSO Group"@en ;
+                                 skos:prefLabel "LAHSO"@en ;
+                                 .
+
+:AircraftDesignGroup a owl:Class ;
+                     rdfs:subClassOf cco:ont00001163 ;
+                     rdfs:label "Aircraft Design Group"@en ;
+                     skos:definition "A measurement information content entity which approximates a ratio between tail height and wingspan."@en ;
+                     skos:altLabel "ADG"@en ;
+                     .                
+:AirbusA320NEO a owl:Class ;
+            rdfs:subClassOf :Fixed-Wing_Aircraft ;
+            owl:equivalentClass (owl:intersectionOf (:Fixed-Wing_Aircraft 
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty obo:BFO_0000178 ;
+                                                                owl:SomeValuesFrom cco:ont00000533 ;
+                                                                owl:cardinality "2"^^xsd:integer
+                                                        ] 
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasModelBADA ;
+                                                                owl:someValuesFrom (owl:intersectionOf ( :BADA_Identifier
+                                                                                                                [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Airbus A320-231"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                       )
+                                                                                   )  
+                                                        ] 
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasModelFAA ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:FAA_Identifier
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Airbus A320"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :manufacturedBy ;
+                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                        owl:onProperty rdfs:label ;
+                                                                                        owl:allValuesFrom ("Airbus"^^xsd:string)
+                                                                          ]
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasAAC ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:AircraftApproachCategory 
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("C"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasADG ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:AircraftDesignGroup
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Aircraft Design Group III"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasTDG ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:TaxiwayDesignGroup
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Taxiway Design Group 3"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasApproachSpeedKnot ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001773 ;
+                                                                                                                                        owl:allValuesFrom ("136"^^xsd:integer)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasWingspanWithoutSharkletsFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("111.9"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasWingspanWithSharkletsFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("117.5"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasLengthFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("123.3"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasTailHeightFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("39.6"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasWheelbaseFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("41.5"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasCockpitMainGearFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("50.2"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasMainGearWidthFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("29.4"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasMTOWlb ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001773 ;
+                                                                                                                                        owl:allValuesFrom ("171961"^^xsd:integer)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasMALWlb ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("145505"^^xsd:integer)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasMainGearsConfiguration ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:MainGearsConfiguration
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("D"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasICAOWTC ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:ICAOWakeTurbulenceCategory
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Medium"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasParkingAreaft2 ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("16354.4"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasFAAWeightClass ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:FAAWeightClass
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Large"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasCWT ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:ConsolidatedWakeTurbulenceCategory
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("F"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasOneHalfWakeCategory ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:OneHalfWakeCategory
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("D"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasFAAWeightClass ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:FAAWeightClass
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Large"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasTwoWakeCategoryAppxA ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:TwoWakeCategoryAppxA
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("D"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasTwoWakeCategoryAppxB ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:TwoWakeCategoryAppxB
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("C"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasSRS ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:SameRunwaySeparationCategory
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("III"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasLAHSO ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:LandAndHoldShortOperationsGroup
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("7"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasSRS ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:SameRunwaySeparationCategory
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("III"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+            )
+            ) ;
+            rdfs:label "Airbus A320 NEO"@en ;
+            skos:altLabel "Airbus A320"@en ;
+            :FAARegistry "Yes"@en;
+            :RegistrationCount "689"^^xsd:integer ;
+            :TMFSOperationsFY24 "1397404"^^xsd:integer ;
+            rdfs:comment "AAC validated by Flight Standardization Board (FSB) report." ;
+            skos:definition "A fixed-wing aircraft produced by Airbus, fitted with two jet engines, and designed to be 123.3 ft long, with an approach speed of 136 knots, a maximum takeoff weight of 171,961 lbs, main gears configuration category D, etc."@en ;
+        .
+
+:Airbus321 a owl:Class ;
+           rdfs:subClassOf cco:Fixed-Wing_Aircraft ;
+           owl:equivalentClass (owl:intersectionOf (:Fixed-Wing_Aircraft 
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty obo:BFO_0000178 ;
+                                                                owl:SomeValuesFrom cco:ont00000533 ;
+                                                                owl:cardinality "2"^^xsd:integer
+                                                        ] 
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasModelBADA ;
+                                                                owl:someValuesFrom (owl:intersectionOf ( :BADA_Identifier
+                                                                                                                [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Airbus A321-111"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                       )
+                                                                                   )  
+                                                        ] 
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasModelFAA ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:FAA_Identifier
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Airbus A321"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :manufacturedBy ;
+                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                        owl:onProperty rdfs:label ;
+                                                                                        owl:allValuesFrom ("Airbus"^^xsd:string)
+                                                                          ]
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasAAC ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:AircraftApproachCategory 
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("D"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )                         
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasAACMinimum ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:AircraftApproachCategoryMinimum
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("C"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasAACMaximum ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:AircraftApproachCategoryMaximum
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("D"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasADG ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:AircraftDesignGroup
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Aircraft Design Group III"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasTDG ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:TaxiwayDesignGroup
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Taxiway Design Group 3"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasApproachSpeedKnot ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001773 ;
+                                                                                                                                        owl:allValuesFrom ("142"^^xsd:integer)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasApproachSpeedMinimumKnot ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001773 ;
+                                                                                                                                        owl:allValuesFrom ("140"^^xsd:integer)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasApproachSpeedMaximumKnot ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001773 ;
+                                                                                                                                        owl:allValuesFrom ("142"^^xsd:integer)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasWingspanWithoutSharkletsFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("111.9"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasWingspanWithSharkletsFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("117.5"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasLengthFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("146.0"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasTailHeightFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("39.7"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasWheelbaseFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("55.5"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasCockpitMainGearFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("64.2"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasMainGearWidthFt ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("29.4"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasMTOWlb ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001773 ;
+                                                                                                                                        owl:allValuesFrom ("200621"^^xsd:integer)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasMALWlb ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("171520"^^xsd:integer)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasMainGearsConfiguration ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:MainGearsConfiguration
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("D"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasICAOWTC ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:ICAOWakeTurbulenceCategory
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Medium"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasParkingAreaft2 ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (cco:ont00001163
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001769 ;
+                                                                                                                                        owl:allValuesFrom ("19256.3"^^xsd:decimal)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasFAAWeightClass ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:FAAWeightClass
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Large"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasCWT ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:ConsolidatedWakeTurbulenceCategory
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("F"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasOneHalfWakeCategory ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:OneHalfWakeCategory
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("D"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasFAAWeightClass ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:FAAWeightClass
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("Large"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasTwoWakeCategoryAppxA ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:TwoWakeCategoryAppxA
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("D"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasTwoWakeCategoryAppxB ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:TwoWakeCategoryAppxB
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("C"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasSRS ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:SameRunwaySeparationCategory
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("III"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasLAHSO ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:LandAndHoldShortOperationsGroup
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("7"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+                                                        [rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasSRS ;
+                                                                owl:AllValuesFrom (owl:intersectionOf (:SameRunwaySeparationCategory
+                                                                                                        [rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty obo:BFO_0000084 ;
+                                                                                                                owl:allValuesFrom [rdf:type owl:Restriction ;
+                                                                                                                                        owl:onProperty cco:ont00001765 ;
+                                                                                                                                        owl:allValuesFrom ("III"^^xsd:string)
+                                                                                                                                  ]
+                                                                                                        ]
+                                                                                                      )
+                                                                                  )
+                                                        ]
+            )
+            ) ;
+           rdfs:label "Airbus 321-111"@en ;
+           :FaaRegistry "Yes" ;
+           :RegistrationCount "491"^^xsd:integer ;
+           :TMFSOperationsFY24 "1364686"^^xsd:integer ;
+           skos:definition "A fixed-wing aircraft produced by Airbus, fitted with two jet engines, and designed to be 123.3 ft long, with an approach speed of 136 knots, a maximum takeoff weight of 171,961 lbs, main gears configuration category D, etc."@en ;
+           rdfs:comment "The final approach speed is 140 knot at a MALW of 166,449 lb and classifies the aircraft into the AAC C while approach speed is 142 knot at a MALW of 171,520 lb and classifies into the AAC D.  AAC validated by Flight Standardization Board (FSB) report." ;
+           .
+
+:TestProcess a owl:Class ;
+             rdfs:subClassOf cco:ont00000228 ,
+                             [rdf:type owl:Restriction ;
+                                owl:onProperty cco:ont00001986 ;
+                                owl:someValuesFrom cco:ont00001163 ] ;
+             rdfs:label "Test Process"@en ;
+             skos:definition "A planned act in which some participant's behavior is measured at least one time and which outputs some measurement information content entity."@en ;
+             .
+
+

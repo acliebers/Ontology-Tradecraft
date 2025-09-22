@@ -1,0 +1,189 @@
+@prefix : <http://www.austinliebers.com/Assignment2Instances/> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix core: <http://www.austinliebers.com/Assignment2Core/> .
+@base <http://www.austinliebers.com/Assignment2Instances/> .
+
+<http://www.austinliebers.com/Assignment2Instances> rdf:type owl:Ontology ;
+              owl:imports <http://www.austinliebers.com/Assignment2Core> ;
+              rdfs:label "Assignment 2 Instances"@en ;
+
+:0000001 a owl:NamedIndividual , 
+           core:AircraftArtifactDesign ,
+           [rdf:type owl:Restriction ;
+                owl:onProperty cco:ont00001808 ;
+                owl:allValuesFrom :AirbusA320NEO
+           ] ;
+         rdfs:label "Airbus 320 NEO Spec_01"@en ;
+         skos:definition "An aircraft artifact design which prescribes the Airbus A320 NEO."@en ;
+    .
+
+:0000002 a owl:NamedIndividual , 
+         a cco:ont00001017 ;
+        rdfs:label "Airbus"@en ;
+        skos:definition "The aircraft manufacturer which is designated by the name 'Airbus'."@en ;
+        .
+
+:0000003 a owl:NamedIndividual ,
+         core:AircraftArtifactDesgin ,
+         [rdf:type owl:Restriction ;
+          owl:onProperty cco:ont00001808 ;
+          owl:allValuesFrom core:AirbusA321
+         ] ;
+         rdfs:label "Airbus A321-111 Spec_01"@en ;
+         skos:definition "An aircraft artifact design which prescribes the Airbus A231-111."@en ;
+         .
+
+:0000004 a owl:NamedIndividual ,
+           core:AirbusA321 ;
+         cco:ont00001920 :0000003 ;
+         rdfs:label "Airbus 321-111 01"@en ;
+         skos:definition "An instance of the Airbus 321-111."@en ;
+    .
+
+:0000005 a owl:NamedIndividual ,
+           core:TestProcess ;
+         obo:BFO_0000057 :0000004 ;
+         cco:ont00001986 :0000010;
+         rdfs:label "Test Process 1"@en;
+         skos:definition "The process where the approach velocity of the Airbus 321-111 is tested."@en ;
+    .
+
+:0000006 a owl:NamedIndividual ,
+           core:TestProcess ;
+         obo:BFO_0000057 :0000004 ;
+         cco:ont00001986 :0000011;
+         obo:BFO_0000139 :0000005 ;
+         rdfs:label "Approach Process 1"@en;
+         skos:definition "The second process where the approach velocity of the Airbus 321-111 is tested."@en ;
+    .
+
+:0000007 a owl:NamedIndividual ,
+           core:TestProcess ;
+         obo:BFO_0000057 :0000004 ;
+         cco:ont00001986 :0000012;
+         obo:BFO_0000139 :0000005 ;
+         rdfs:label "Approach Process 2"@en;
+         skos:definition "The third process where the approach velocity of the Airbus 321-111 is tested."@en ;
+    .
+
+:0000008 a owl:NamedIndividual ,
+           core:TestProcess ;
+         obo:BFO_0000057 :0000004 ;
+         cco:ont00001986 :0000013;
+         obo:BFO_0000139 :0000005 ;
+         rdfs:label "Approach Process 3"@en;
+         skos:definition "The fourth process where the approach velocity of the Airbus 321-111 is tested."@en ;
+    .
+:0000009 a owl:NamedIndividual ,
+           core:TestProcess ;
+         obo:BFO_0000057 :0000004 ;
+         cco:ont00001986 :0000014;'
+         obo:BFO_0000139 :0000005 ;
+         rdfs:label "Approach Process 4"@en;
+         skos:definition "The fifth process where the approach velocity of the Airbus 321-111 is tested."@en ;
+    .
+:0000010 a owl:NamedIndividual ,
+           core:TestProcess ;
+         obo:BFO_0000057 :0000004 ;
+         cco:ont00001986 :0000014;
+         obo:BFO_0000139 :0000005 ;
+         rdfs:label "Approach Process 5"@en;
+         skos:definition "The fifth process where the approach velocity of the Airbus 321-111 is tested."@en ;
+    .
+:0000011 a owl:NamedIndividual ,
+           cco:ont00001163;
+           rdfs:label "Maximum Approach Speed Knots measurement 01"@en ;
+           obo:BFO_0000084 :0000015;
+           skos:definition "The MICE output of the first maximum approach speed test of the Airbus 321-111."@en ;
+           .
+
+:0000012 a owl:NamedIndividual ,
+           cco:ont00001163;
+           rdfs:label "Maximum Approach Speed Knots measurement 02"@en ;
+           obo:BFO_0000084 :0000016;
+           skos:definition "The MICE output of the first maximum approach speed test of the Airbus 321-111."@en ;
+           .
+    .
+:0000013 a owl:NamedIndividual ,
+           cco:ont00001163;
+           rdfs:label "Maximum Approach Speed Knots measurement 03"@en ;
+           obo:BFO_0000084 :0000017;
+           skos:definition "The MICE output of the first maximum approach speed test of the Airbus 321-111."@en ;
+           .
+    .
+:0000014 a owl:NamedIndividual ,
+        cco:ont00001163;
+           rdfs:label "Maximum Approach Speed Knots measurement 04"@en ;
+           obo:BFO_0000084 :0000018;
+           skos:definition "The MICE output of the first maximum approach speed test of the Airbus 321-111."@en ;
+           .
+    .
+:0000015 a owl:NamedIndividual ,
+           cco:ont00001163;
+           rdfs:label "Maximum Approach Speed Knots measurement 05"@en ;
+           obo:BFO_0000084 :0000019;
+           skos:definition "The MICE output of the first maximum approach speed test of the Airbus 321-111."@en ;
+           .
+    .
+:0000016 a owl:NamedIndividual ,
+            cco:ont00000253 ;
+        rdfs:label "Approach Speed Record 01"@en ;
+        skos:definition "The object on which the output of the first test result is recorded."@en ;
+        cco:ont00001773 "139"^^xsd:integer ;
+        :usesMeasurementUnit :0000021 ;
+    .
+
+:0000017 a owl:NamedIndividual ,
+            cco:ont00000253 ;
+        rdfs:label "Approach Speed Record 02"@en ;
+        skos:definition "The object on which the output of the second test result is recorded."@en ;
+        cco:ont00001773 "139"^^xsd:integer ;
+        :usesMeasurementUnit :0000021 ;
+    .
+
+:0000018 a owl:NamedIndividual ,
+            cco:ont00000253 ;
+        rdfs:label "Approach Speed Record 03"@en ;
+        skos:definition "The object on which the output of the third test result is recorded."@en ;
+        cco:ont00001773 "139"^^xsd:integer ;
+        :usesMeasurementUnit :0000021 ;
+    .
+
+
+:0000019 a owl:NamedIndividual ,
+            cco:ont00000253 ;
+        rdfs:label "Approach Speed Record 04"@en ;
+        skos:definition "The object on which the output of the fourth test result is recorded."@en ;
+        cco:ont00001773 "139"^^xsd:integer ;
+        :usesMeasurementUnit :0000021 ;
+    .
+
+
+:0000020 a owl:NamedIndividual ,
+            cco:ont00000253 ;
+        rdfs:label "Approach Speed Record 05"@en ;
+        skos:definition "The object on which the output of the fifth test result is recorded."@en ;
+        cco:ont00001773 "139"^^xsd:integer ;
+        :usesMeasurementUnit :0000021 ;
+    .
+
+:0000021 a owl:NamedIndividual ,
+            cco:ont00000969 ;
+         rdf:label "Knots Measurement Unit"@en ;
+         skos:definition "A unit of measure equal to one nautical mile per hour."@en ;
+         .
+
+
+
+
+
+
+
