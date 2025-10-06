@@ -1223,4 +1223,63 @@
              skos:definition "A planned act in which some participant's behavior is measured at least one time and which outputs some measurement information content entity."@en ;
              .
 
+:AerospaceEngineerRole a owl:Class ;
+                       rdfs:subClassOf obo:BFO_0000023 ;
+                       rdfs:label "Aerospace Engineer Role"@en ;
+                       skos:definition "A role realized in processes of designing, constructing, and testing aircraft, missiles, and spacecraft, related research, and in acts of communication about improving testing equipments and techniques."@en ;
+        .
+
+:AerospaceEngineeringandOperationsTechnologistRole a owl:Class ;
+                                                  rdfs:subClassOf obo:BFO_0000023 ;
+                                                  rdfs:label "Aerospace Engineering and Operations Technologist Role"@en ;
+                                                  skos:definition "A role realized in processes of operating, adjusting, installing, and maintaining integrated computer and communications systems/consoles/simulators, measurement instruments, and equipment which are used to launch, track, position, and evalluate air and space vehicles, as well as recording and interpreting test data."@en ;
+        .
+
+:AerospaceEngineer a owl:Class ;
+                   rdfs:subClassOf cco:ont00001262 ;
+                   owl:equivalentClass (owl:intersectionOf (cco:ont00001262
+                                                            [rdf:type owl:Restriction ;
+                                                                owl:onProperty obo:BFO_0000196 ;
+                                                                owl:AllValuesFrom :AerospaceEngineerRole]
+                                                           )
+                                       ) ;
+                   rdfs:label "Aerospace Engineer"@en ;
+                   skos:definition "A person who is the bearer of an Aerospace Engineer role."@en ;
+        .
+
+:AerospaceEngineeringAndOperationsTechnologist a owl:Class ;
+                                             rdfs:subClassOf cco:ont00001262 ;
+                                             owl:equivalentClass (owl:intersectionOf (cco:ont00001262
+                                                                                      [rdf:type owl:Restriction ;
+                                                                                       owl:onProperty obo:BFO_0000196 ;
+                                                                                       owl:AllValuesFrom :AerospaceEngineeringAndOperationsTechnologistRole]
+                                                                                     )
+                                                                 ) ;
+                   rdfs:label "Aerospace Engineer"@en ;
+                   skos:definition "A person who is the bearer of an Aerospace Engineering and Operations Technologist role."@en ;
+        .
+
+:ActOfAircraftDesign a owl:Class ;
+                     rdfs:subClassOf cco:ont00000253 ,
+                                     [rdf:type owl:Restriction ;
+                                      owl:onProperty cco:ont00001986 ;
+                                      owl:allValuesFrom :AircraftArtifactDesign] ;
+                     rdfs:label "Act of Aircraft Design"@en ;
+                     skos:definition "A planned act which has an Aircraft Artifact Design as output."@en ;
+                     .
+
+:ActOfAircraftProcessing a owl:Class ;
+                         rdfs:subClassOf cco:ont00000253 , 
+                                         [rdf:type owl:Restriction ;
+                                                owl:OnProperty obo:BFO_0000057 ;
+                                                owl:SomeValuesFrom  ];
+                         rdfs:label "Act of Aircraft Processing"@en ;
+                         skos:definition "A planned act in which a "@en ;
+                                                .
+
+:AdaptabilityEvaluation a owl:Class ;
+                        rdfs:subClassOf cco:ont00001163 ;
+                        rdfs:label "Adaptability Evaluation"@en ;
+                        skos:definition "A measurement information content entity which is a measurement of the adaptability of a material, component, or system."@en ;
+                        .
 
